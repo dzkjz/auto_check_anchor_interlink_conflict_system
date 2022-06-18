@@ -1,3 +1,7 @@
 # auto_check_anchor_interlink_conflict_system
+
+使用方法， 往anchors.txt文件下添加更多预期关键词 然后check_anchors.py运行即可 运行前清空anchors_conflict_url_words表
+
 # auto_check_anchor_interlink_conflict_system
+
 # auto_check_anchor_interlink_conflict_system
