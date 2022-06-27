@@ -216,7 +216,7 @@ def get_anchors():
     return anchors
 
 
-def start(no_save_to_database=True):
+def start(no_save_to_database=True, new_anchor_list_need_empty_database=True):
     source_parse_to_text()
     # threads = []
     # max_threads = 1
@@ -235,6 +235,9 @@ def start(no_save_to_database=True):
     # 是否与其他币种冲突【同名】
 
     dh = database_handler()
+    if new_anchor_list_need_empty_database:
+        dh.drop_anchors_conflict_url_words_table()
+        dh.create_anchors_conflict_url_words_table()
     # 检测源码中是否有文本
     for anchor in anchors:
         anchor = anchor.strip()
@@ -266,6 +269,7 @@ def start(no_save_to_database=True):
 
 def conflict_filter(no_save_to_database=True):
     dh = database_handler()
+
     anchors = get_anchors()
     # 哪些币在哪个页面存在冲突 冲突文本是什么【已解决】
     # 冲突文本是否是会优先匹配到更长设定文本 如果是，那更长设定文本会不会也会出问题【包含在word中】 不会->ok 都不冲突 会->标注更长设定文本会冲突
@@ -300,5 +304,5 @@ def conflict_filter(no_save_to_database=True):
                                                                      datetime.now())
 
 
-start(no_save_to_database=False)
+start(no_save_to_database=False, new_anchor_list_need_empty_database=True)
 conflict_filter(no_save_to_database=False)

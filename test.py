@@ -94,23 +94,25 @@ import lxml.html.clean
 #     print(r)
 
 
-text = '''Before answering this question, we must first understand what wrapped bitcoin is. Wrapped bitcoin is a  token issued based on the Ethereum ERC-20 standard. It aims to bring the liquidity and stability of Bitcoin as a cryptocurrency into the Ethereum ecosystem. Thereby increasing the use cases of Bitcoin, such as participating in liquidity mining of ethereum ecosystem projects with wrapped bitcoin.
-
-Every single wrapped bitcoin issued must be backed by Bitcoin. Each Bitcoin stored by the authorized merchant can correspond to one wrapped bitcoin issued and can be audited on the chain. 
-
-For users they can only purchase -wrapped bitcoin or do a 1:1 swap with an authorized merchant. And those merchants mint the wrapped bitcoin from the smart contract and then send an equal amount of Bitcoin as a collateral to the custodian. When someone wants to exchange wrapped bitcoin for Bitcoin, the wrapped bitcoin will be burned on the Ethereum.
-
-To put it simply, one wrapped bitcoin equals one BTC, and the value of BTC can be migrated to the Ethereum ecosystem via wrapped bitcoin. What’s more, wrapped bitcoin has its unique superiority. As an ERC-20 token, the transaction speed of wrapped bitcoin is faster than Bitcoin, and the prime advantage of wrapped bitcoin lies in its integration into Ethereum wallets, dapps and smart contracts.
-
-According to the last data from CoinMarketCap, the total Market Cap of wrapped bitcoin reached $4 billion, the 24H trading volume exceeded $131 million. At the time of writing this article, there have been more than 110,771 WBTC in circulation, and it is increasing.'''.lower()
-# anchor = 'The Crypto Prophecies'.lower()
-anchor = 'Wrapped Bitcoin'.lower()
-# conflicted_symbol = fr'\w{anchor}\s'
-# conflicted_symbol = fr'\s{anchor}'
-# conflicted_symbol = fr'{anchor}\s'
-# conflicted_symbol = fr'{anchor}\w'
-re_ = fr'(?:[\w|\-|\/]*){anchor}(?:[\w|\-|\/]*)'
-conflict_words = re.findall(re_, text)
-for conflict_word in conflict_words:
-    if not conflict_word.strip().lower() == anchor.strip().lower():
-        print(conflict_word.strip().lower())
+# text = '''Before answering this question, we must first understand what wrapped bitcoin is. Wrapped bitcoin is a  token issued based on the Ethereum ERC-20 standard. It aims to bring the liquidity and stability of Bitcoin as a cryptocurrency into the Ethereum ecosystem. Thereby increasing the use cases of Bitcoin, such as participating in liquidity mining of ethereum ecosystem projects with wrapped bitcoin.
+#
+# Every single wrapped bitcoin issued must be backed by Bitcoin. Each Bitcoin stored by the authorized merchant can correspond to one wrapped bitcoin issued and can be audited on the chain.
+#
+# For users they can only purchase -wrapped bitcoin or do a 1:1 swap with an authorized merchant. And those merchants mint the wrapped bitcoin from the smart contract and then send an equal amount of Bitcoin as a collateral to the custodian. When someone wants to exchange wrapped bitcoin for Bitcoin, the wrapped bitcoin will be burned on the Ethereum.
+#
+# To put it simply, one wrapped bitcoin equals one BTC, and the value of BTC can be migrated to the Ethereum ecosystem via wrapped bitcoin. What’s more, wrapped bitcoin has its unique superiority. As an ERC-20 token, the transaction speed of wrapped bitcoin is faster than Bitcoin, and the prime advantage of wrapped bitcoin lies in its integration into Ethereum wallets, dapps and smart contracts.
+#
+# According to the last data from CoinMarketCap, the total Market Cap of wrapped bitcoin reached $4 billion, the 24H trading volume exceeded $131 million. At the time of writing this article, there have been more than 110,771 WBTC in circulation, and it is increasing.'''.lower()
+# # anchor = 'The Crypto Prophecies'.lower()
+# anchor = 'Wrapped Bitcoin'.lower()
+# # conflicted_symbol = fr'\w{anchor}\s'
+# # conflicted_symbol = fr'\s{anchor}'
+# # conflicted_symbol = fr'{anchor}\s'
+# # conflicted_symbol = fr'{anchor}\w'
+# re_ = fr'(?:[\w|\-|\/]*){anchor}(?:[\w|\-|\/]*)'
+# conflict_words = re.findall(re_, text)
+# for conflict_word in conflict_words:
+#     if not conflict_word.strip().lower() == anchor.strip().lower():
+#         print(conflict_word.strip().lower())
+dh = database_handler()
+dh.create_anchors_conflict_url_words_table()

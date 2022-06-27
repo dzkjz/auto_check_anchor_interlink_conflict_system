@@ -158,3 +158,17 @@ class database_handler:
         # 检查是否已经插入过该条记录
         select_query = f'''delete from news_pages.anchors_conflict_url_words where id=%s'''
         self.__execute_query__(select_query, (row_id,), False, False)
+
+    def drop_anchors_conflict_url_words_table(self):
+        drop_query = f'''drop table if exists news_pages.anchors_conflict_url_words'''
+        self.__execute_query__(drop_query, (), False, False)
+
+    def create_anchors_conflict_url_words_table(self):
+        create_query = f'''create table news_pages.anchors_conflict_url_words(
+        id int auto_increment primary key not null,
+        url tinytext not null ,
+        anchor tinytext not null ,
+        words tinytext not null ,
+        checked_time datetime not null 
+        )'''
+        self.__execute_query__(create_query, (), False, False)
