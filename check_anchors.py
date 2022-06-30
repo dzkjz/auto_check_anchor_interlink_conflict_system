@@ -42,6 +42,8 @@ def analysis_content_text(text: str, anchor: str, need_content=False) -> Tuple[b
     text = text.replace(" " + anchor + " ", "")
     text = text.replace("(" + anchor + ")", "")
 
+
+
     # text = text.replace(" " + anchor, "")
     # text = text.replace("-" + anchor, "") #币对词
     text = text.replace(" (" + anchor, "")
