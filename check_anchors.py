@@ -42,8 +42,6 @@ def analysis_content_text(text: str, anchor: str, need_content=False) -> Tuple[b
     text = text.replace(" " + anchor + " ", "")
     text = text.replace("(" + anchor + ")", "")
 
-
-
     # text = text.replace(" " + anchor, "")
     # text = text.replace("-" + anchor, "") #币对词
     text = text.replace(" (" + anchor, "")
@@ -293,6 +291,7 @@ def conflict_filter(no_save_to_database=True):
                             f'{anchor_outer_conflicted_id} {anchor_outer_conflicted_data_words}中出现过{anchor_inner}，会冲突')
                         # 移除anchor_outer中的冲突值,如果为0 则移除整个row
                         anchor_outer_conflicted_data_words.remove(anchor_inner.lower())
+                        anchor_outer_conflicted_data_words.remove('')
                         print(f"移除{anchor_inner}后：{anchor_outer_conflicted_data_words}")
                         if not no_save_to_database:
                             if len(anchor_outer_conflicted_data_words) < 1:

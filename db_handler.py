@@ -168,7 +168,7 @@ class database_handler:
         id int auto_increment primary key not null,
         url tinytext not null ,
         anchor tinytext not null ,
-        words tinytext not null ,
+        words text not null ,
         checked_time datetime not null 
         )'''
         self.__execute_query__(create_query, (), False, False)

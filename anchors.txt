@@ -140,3 +140,298 @@ top cryptocurrency
 Trading Bot
 trading crypto
 valeur bitcoin
+ethereum
+eth
+eth price
+ethereum price
+eth price usd
+ethereum price usd
+price of ethereum
+ethusdt
+eth to usdt
+eth usdt
+btc
+bitcoin
+btc price
+bitcoin price
+btc usd
+btc to usd
+bitcoin price usd
+bitcoin price today
+btc to usdt
+btc/usdt
+lunc
+lunc price
+lunc usd
+lunc to usd
+luncusdt
+terra luna
+luna price
+luna crypto
+luna usdt
+lunausdt
+luna/usdt
+ustc
+ustc price
+terra ustc
+ustc usd
+ustcusdt
+kcs price
+xlm
+xlm price
+price of xml
+xlm usdt
+xlmusdt
+xlm to usdt
+usdc
+usdc price
+usdc usdt
+usdt usdc
+usdc to usdt
+algo
+algo price
+algo coin
+shiba inu price
+shib
+shib price
+shib coin
+dogecoin price
+doge price
+doge
+doge usdt
+SOL
+solana
+sol price
+solana price
+sol to usd
+sol usdt
+solusdt
+solana usdt
+eth to usd
+giá ethereum
+eth to vnd
+eth usd
+eth/usdt
+luna
+terra
+giá luna
+giá terra
+kcs usdt
+kcs/usdt
+trx
+tron
+giá trx
+giá tron
+trx/usdt
+stellar
+giá xlm
+giá stellar
+xlm/usdt
+usd coin
+usdcusdt
+algorand
+giá algo
+algousdt
+algo usdt
+algo/usdt
+shiba inu
+giá shiba inu
+shibusdt
+giá dogecoin
+doge/usdt
+giá solana
+sol/usdt
+bitcoin hoje
+BTC hoje
+bitcoin cotação
+BTC em real
+BTC brl
+bitcoin usdt
+ethereum hoje
+ethereum valor
+ethereum cotação
+ethereum para real
+ethereum preço
+lunc preço
+lunc valor
+lunc/usdt
+LUNA preço
+LUNA hoje
+Luna cripto
+USTC preço
+trx hoje
+Tron hoje
+trx preço
+trx para real
+Stellar hoje
+USD coin hoje
+USDC preço
+USD coin para real
+Shiba inu coin
+Shiba Inu hoje
+Shiba Inu preço
+SHIB valor
+SHIB brl
+SHIB cotação
+Dogecoin hoje
+Dogecoin cotação
+Dogecoin preço
+Doge hoje
+Doge brl
+Dogecoin para real
+Solana hoje
+Solana preço
+Solana cotação
+bitcoin kurs
+Bitcoin Chart
+bitcoin preis
+btc / usdt
+btc eur
+bitcoin kurs euro
+bitcoin euro kurs
+kurs bitcoin euro
+bitcoin kurs in euro
+ethereum kurs
+eth kurs
+ethereum preis
+ethereum chart
+Ethereum traden
+terra luna coin
+luna coin kurs
+luna kurs
+kcs
+trx
+trx coin
+trx kaufen
+xlm coin
+usdc coin
+shiba inu
+shiba inu kaufen
+shiba inu preis
+shib kurs
+doge coin
+sol coin
+bitcoin cours
+cours btc usd
+prix bitcoins
+1 bitcoin en euro
+bitcoin cours dollar
+cours bitcoin euro
+bitcoin trader
+cours btc usdt
+btceur
+bitcoin euro
+achat bitcoin
+prix ethereum
+valeur ethereum
+ethereum cours
+ether euro
+etheur
+ethereum euro
+achat ethereum
+cours luna
+terra crypto
+terra luna crypto
+cours terra luna
+luna coin
+ust
+cours ustc
+ust crypto
+kcs crypto
+kucoin crypto
+cours kcs
+trx crypto
+tron trx
+cours trx
+trx en euro
+trx prix
+acheter tron
+acheter trx
+stellar lumens
+xlm crypto
+cours stellar
+stellar crypto
+stellar cours
+xlm cours
+xlm eur
+acheter stellar
+cours usdc
+usdc vs usdt
+usdt ou usdc
+algo crypto
+cours algorand
+algo usd
+shiba inu crypto
+shiba inu prix
+shiba inu cours
+shiba crypto
+shiba inu crypto cours
+shiba usdt
+shib eur
+acheter shiba inu crypto
+acheter shiba inu
+dogecoin cours
+cours du dogecoin
+cours dodge coin
+dogeusd
+dogecoin prix
+cours dogecoin euro
+acheter dogecoin
+doge eur
+dogecoin acheter
+acheter du dogecoin
+doge euro
+dogecoin eur
+solana crypto
+cours solana
+solana cours
+cours solana euro
+solana en euro
+acheter solana
+solana euro
+sol euro
+sol eur
+BTC Fiyat
+BTC Kaç Dolar
+BTC Kaç TL
+BTCUSDT Grafik
+ETH Fiyat
+ETH Kaç Dolar
+ETH Kaç TL
+ETHUSDT Grafik
+LUNC Fiyat
+LUNC Kaç Dolar
+LUNC Kaç TL
+LUNA Fiyat
+LUNA Kaç Dolar
+LUNA Kaç TL
+LUNAUSDT Grafik
+USTC Fiyat
+USTC Kaç Dolar
+USTC Kaç TL
+KCS Fiyat
+KCS Kaç Dolar
+KCS Kaç TL
+TRX Fiyat
+TRX Kaç Dolar
+TRX Kaç TL
+XLM Fiyat
+XLM Kaç Dolar
+XLM Kaç TL
+USDC Fiyat
+USDC Kaç Dolar
+USDC Kaç TL
+ALGO Fiyat
+ALGO Kaç Dolar
+ALGO Kaç TL
+ALGOUSDT Grafik
+SHIB Coin Fiyat
+SHIB Coin Kaç Dolar
+SHIB Coin Kaç TL
+DOGE Fiyat
+DOGE Kaç Dolar
+DOGE Kaç TL
+SOL Fiyat
+SOL Kaç Dolar
+SOL Kaç TL
+SOLUSDT Grafik
