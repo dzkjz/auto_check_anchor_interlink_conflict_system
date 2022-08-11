@@ -103,6 +103,7 @@ def initialize_driver() -> WebDriver:
 
 def source_parse_to_text():
     dh = database_handler()
+    # 检测是有哪些文章已经解析过了
     res = dh.read_article_content_urls()
     urls = []
     for re in res:
@@ -184,14 +185,14 @@ def source_parse_to_text():
         soup = BeautifulSoup(source_code, 'html.parser')
         ele = soup.select_one('div[class*="kucoin-article"]')
         ele_source = str(ele)
-        if len(ele.text.strip()) > 0:
+        if ele is not None and len(ele.text.strip()) > 0:
             ele_source = lxml.html.fromstring(ele_source)
             cleaner = lxml.html.clean.Cleaner(style=True)
             ele_source = cleaner.clean_html(ele_source).text_content()
             soup = BeautifulSoup(ele_source, 'html.parser')
             content = soup.text
         else:
-            content = ele.text
+            content = ''
         content = content.replace(" ", ' ')
         content = content.replace("\n", " ").replace("\r", " ").replace("\r\n", " ")
         content = content.replace(" ", ' ')
@@ -216,23 +217,18 @@ def get_anchors():
     return anchors
 
 
-def start(no_save_to_database=True, new_anchor_list_need_empty_database=True):
-    source_parse_to_text()
-    # threads = []
-    # max_threads = 1
-    # for i in range(max_threads):
-    #     t = Thread(target=source_parse_to_text)
-    #     time.sleep(1)
-    #     t.start()
-    #     threads.append(t)
-    # for t in threads:
-    #     t.join()
+def start(no_save_to_database=True, new_anchor_list_need_empty_database=True, need_find_conflict=False):
+    if need_find_conflict:
+        find_conflict(no_save_to_database=no_save_to_database,
+                      new_anchor_list_need_empty_database=new_anchor_list_need_empty_database)
+    else:
+        only_find_keywords(no_save_to_database=no_save_to_database)
 
-    anchors = get_anchors()
 
+def find_conflict(no_save_to_database=True, new_anchor_list_need_empty_database=True):
     # 检测是否anchors冲突
 
-    # 是否与其他币种冲突【同名】
+    anchors = get_anchors()
 
     dh = database_handler()
     if new_anchor_list_need_empty_database:
@@ -244,7 +240,9 @@ def start(no_save_to_database=True, new_anchor_list_need_empty_database=True):
         print(f"检测{anchor}")
         anchor_to_check = anchor.lower().strip()
         conflicted = False
-        source_contents = dh.read_article_content_like_anchor(anchor=anchor_to_check)
+        # 是否与其他币种冲突【同名】
+
+        source_contents = dh.read_article_content_like_anchor(anchor=anchor_to_check, is_regex=False)
         for source_content in source_contents:
             p_content = source_content[3]
             p_content = p_content.lower()
@@ -265,6 +263,30 @@ def start(no_save_to_database=True, new_anchor_list_need_empty_database=True):
 
     # DAO 与 H2O DAO 【如果被其他币种包含，则视为冲突】此情况很难，因为H2O DAO锚文本是H2O 所以自动添加时只会添加H2O，如果某币种全包含，则短币自动
     # 会排除掉，也就不用考虑了
+
+
+def only_find_keywords(no_save_to_database=True):
+    dh = database_handler()
+    source_parse_to_text()
+    anchors = get_anchors()
+    datas = []
+    for anchor in anchors:
+        anchor = anchor.strip()
+        print(f"检测{anchor}")
+        anchor_to_check = anchor.lower().strip()
+        regex_anchor = fr'[[:space:][:tab]]{anchor}[[:space:][:tab]\.]'
+        source_contents = dh.read_article_content_like_anchor(anchor=regex_anchor, is_regex=True)
+
+        if not no_save_to_database:
+            for source_content in source_contents:
+                data = {
+                    'Anchor': anchor_to_check,
+                    'URL': source_content[1]
+                }
+                datas.append(data)
+
+    if not no_save_to_database:
+        dh.exporting_to_excel(datas)
 
 
 def conflict_filter(no_save_to_database=True):
@@ -305,6 +327,5 @@ def conflict_filter(no_save_to_database=True):
                                                                      str(anchor_outer_conflicted_data_new_words),
                                                                      datetime.now())
 
-
-start(no_save_to_database=False, new_anchor_list_need_empty_database=True)
-conflict_filter(no_save_to_database=False)
+# start(no_save_to_database=False, new_anchor_list_need_empty_database=True)
+# conflict_filter(no_save_to_database=False)

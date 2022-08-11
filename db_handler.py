@@ -3,6 +3,9 @@ import decimal
 from mysql.connector import connect, Error
 import datetime
 from typing import List
+import os
+from pandas import json_normalize
+import json
 
 
 class database_handler:
@@ -123,14 +126,21 @@ class database_handler:
         result = self.__execute_query__(select_query, (), True, False)
         return result
 
-    def read_article_content_like_anchor(self, anchor: str):
+    def read_article_content_like_anchor(self, anchor: str, is_regex=False):
         anchor = anchor.lower()
-        # 检查是否已经插入过该条记录
-        select_query = f'''SELECT id, url, parent_url, lower(content)
-        FROM news_pages.article_content
-        WHERE lower(content) like %s
-        '''
-        result = self.__execute_query__(select_query, ("%{}%".format(anchor),), True, False)
+
+        if is_regex:
+            select_query = f'''SELECT id, url, parent_url, lower(content)
+                    FROM news_pages.article_content
+                    WHERE lower(content) rlike %s
+                    '''
+            result = self.__execute_query__(select_query, (anchor,), True, False)
+        else:
+            select_query = f'''SELECT id, url, parent_url, lower(content)
+                    FROM news_pages.article_content
+                    WHERE lower(content) like %s
+                    '''
+            result = self.__execute_query__(select_query, ("%{}%".format(anchor),), True, False)
         return result
 
     def save_anchors_conflict_url_words(self, url: str, anchor: str, conflict_words: str, checked_time: datetime):
@@ -172,3 +182,74 @@ class database_handler:
         checked_time datetime not null 
         )'''
         self.__execute_query__(create_query, (), False, False)
+
+    def create_article_content_table(self):
+        create_query = f'''create table news_pages.article_content
+(
+    id         int auto_increment primary key not null,
+    url        tinytext                       not null,
+    parent_url tinytext                       not null,
+    content    text                           not null
+)'''
+        self.__execute_query__(create_query, (), False, False)
+
+    def create_pages_source_code(self):
+        create_query = f'''create table news_pages.pages_source_code
+(
+    id           int auto_increment primary key not null,
+    url          text                           not null,
+    parent_url   text                           not null,
+    source_code  mediumtext                     not null,
+    crawled_time time                           not null
+);'''
+        self.__execute_query__(create_query, (), False, False)
+
+    def create_article_urls(self):
+        create_query = f'''create table news_pages.article_urls
+(
+    id           int auto_increment primary key not null,
+    url          text                           not null,
+    parent_url   text                           not null,
+    crawled_time time                           not null
+);'''
+        self.__execute_query__(create_query, (), False, False)
+
+    def drop_article_content_table(self):
+        drop_query = f'''drop table if exists news_pages.article_content'''
+        self.__execute_query__(drop_query, (), False, False)
+
+    def drop_article_urls(self):
+        drop_query = f'''drop table if exists news_pages.article_urls'''
+        self.__execute_query__(drop_query, (), False, False)
+
+    def drop_pages_source_code(self):
+        drop_query = f'''drop table if exists news_pages.pages_source_code'''
+        self.__execute_query__(drop_query, (), False, False)
+
+    def exporting_to_excel(self, datas: List):
+        # datas = [{
+        #     'Index': result[0],
+        #     'Year&month': result[1],
+        #     'URL': result[2],
+        #     'Links': result[3],
+        #     'Index Status': 'Indexed' if result[4] else 'Not Indexed',
+        #     'Language': result[5],
+        #     'Checked Time': result[6],
+        #     'Agency': result[7],
+        #     'Name': result[8],
+        #     'Note': result[9]
+        # },{
+        #     'Index': result[0],
+        #     'Year&month': result[1],
+        #     'URL': result[2],
+        #     'Links': result[3],
+        #     'Index Status': 'Indexed' if result[4] else 'Not Indexed',
+        #     'Language': result[5],
+        #     'Checked Time': result[6],
+        #     'Agency': result[7],
+        #     'Name': result[8],
+        #     'Note': result[9]
+        # },]
+        df = json_normalize(datas)
+        df.to_excel(os.path.dirname(__file__) + '/find_anchors.xlsx', sheet_name='Sheet1', index=False)
+        print("导出excel成功")
