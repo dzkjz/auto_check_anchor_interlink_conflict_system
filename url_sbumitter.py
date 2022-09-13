@@ -69,7 +69,7 @@ for futures_data in futures_datas:
         futures_urls.append(url)
 
 urls = []
-urls.extend(spot_urls)
+# urls.extend(spot_urls)
 urls.extend(futures_urls)
 # submit urls to bing 500 per request
 while len(urls) > 0:

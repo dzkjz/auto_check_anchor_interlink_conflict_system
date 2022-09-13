@@ -15,10 +15,10 @@ class database_handler:
         self.__password__ = "12345678"
         self.__database_name__ = 'backlinks_tracker'
 
-    def __execute_query__(self, query, parameters, need_result: bool, save_rowid: bool):
+    def __execute_query__(self, query, parameters, need_result: bool, save_rowid: bool, database='backlinks_tracker'):
         try:
             with connect(host=self.__host__, user=self.__user__, password=self.__password__,
-                         database=self.__database_name__) as connection:
+                         database=database) as connection:
                 with connection.cursor() as cursor:
                     cursor.execute(query, parameters)
                     if save_rowid:
@@ -213,6 +213,47 @@ class database_handler:
     crawled_time time                           not null
 );'''
         self.__execute_query__(create_query, (), False, False)
+
+    def create_tdk_table(self, database_name='tdks'):
+        create_query = f'''create table tdks.tdk(
+        id  int auto_increment primary key not null,
+        language_code text not null,
+        base_url text not null,
+        url text not null,
+        title text not null,
+        description text not null,
+        keywords text not null
+        )
+        '''
+        self.__execute_query__(create_query, (), False, False, database=database_name)
+
+    def save_tdk_table(self,
+                       language_code: str,
+                       base_url: str,
+                       url: str,
+                       title: str,
+                       description: str,
+                       keywords: str,
+                       database_name='tdks'):
+        save_query = f'''insert into tdks.tdk(language_code,
+         base_url, url, title, description, keywords) 
+         VALUES (%s,%s,%s,%s,%s,%s)
+        '''
+        self.__execute_query__(save_query,
+                               (language_code,
+                                base_url,
+                                url,
+                                title,
+                                description,
+                                keywords),
+                               False,
+                               False,
+                               database=database_name)
+
+    def read_tdk_table(self):
+        read_query = f'''SELECT * FROM tdks.tdk'''
+
+        return self.__execute_query__(read_query, (), True, False)
 
     def drop_article_content_table(self):
         drop_query = f'''drop table if exists news_pages.article_content'''
