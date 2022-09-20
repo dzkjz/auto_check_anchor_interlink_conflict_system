@@ -68,13 +68,15 @@ for futures_data in futures_datas:
         url = f"https://www.kucoin.com{lang}/trading-bot/futures/grid/{futures_data['symbolCode']}"
         futures_urls.append(url)
 
-urls = []
-# urls.extend(spot_urls)
-urls.extend(futures_urls)
-# submit urls to bing 500 per request
-while len(urls) > 0:
-    count = 499 if len(urls) > 499 else len(urls)
-    url_spilt = urls[:count]
-    del urls[:count]
-    # print(url_spilt)
-    submit_bing(url_spilt)
+print(len(spot_urls))
+print(len(futures_urls))
+# urls = []
+# # urls.extend(spot_urls)
+# urls.extend(futures_urls)
+# # submit urls to bing 500 per request
+# while len(urls) > 0:
+#     count = 499 if len(urls) > 499 else len(urls)
+#     url_spilt = urls[:count]
+#     del urls[:count]
+#     # print(url_spilt)
+#     submit_bing(url_spilt)

@@ -12,7 +12,7 @@ import json
 
 cookies = [
     'token=e3f9171a2a1188677fec637ef2127448;',
-    'admin-gw-v2.kucoin.com_ADMIN-SESSION=36ea016103e8a020b22688e8'
+    'admin-gw-v2.kucoin.com_ADMIN-SESSION=0eae080a2a02c6132355a4a9'
 ]
 
 
@@ -166,7 +166,7 @@ def read_tdks_from_database():
 
 
 def updater():
-    older_urls = ["https://www.kucoin.com/nl/price/{0}", ]
+    older_urls = ["https://www.kucoin.com/pt/price/{0}", ]
     for older_url in older_urls:
         item = queryTDKStatus(older_url)
         if item is not None:
@@ -178,7 +178,7 @@ def updater():
             if originalUrl == older_url:
                 deleter(id)
 
-    language = 'nl_NL'
+    language = 'pt_PT'
 
     # 创建
     has_template = False
@@ -249,7 +249,7 @@ def updater():
             customized_tokens.append(customized_tokens_from_template(True, to['ticker'], to['coin_name'], language))
     else:
         customized_tokens = customized_tokens_from_template(False, None, None, language)
-    price_base_url = 'https://www.kucoin.com/nl/price/'
+    price_base_url = 'https://www.kucoin.com/pt/price/'
     tokens = price_tokens()
     ctokens = []
     for ct in customized_tokens:
@@ -318,7 +318,7 @@ updater()
 def read_excel_into_database(language_code):
     file_path = os.path.dirname(os.path.abspath(__file__)) + '/temp/TDK_ Price Pages [FR & ES].xlsx'
     if os.path.exists(file_path):
-        df_data = pandas.read_excel(file_path, sheet_name='NL')
+        df_data = pandas.read_excel(file_path, sheet_name='PT')
         if df_data.empty:
             raise ValueError('No Data found')
         else:
@@ -369,10 +369,10 @@ def read_excel_into_database(language_code):
                     continue
                 print(f'''URL is {url}, title is {title}, description is {description},keywords is {keywords}''')
 
-                dh.save_tdk_table(language_code=language_code, base_url='https://www.kucoin.com/nl/price/', url=url,
+                dh.save_tdk_table(language_code=language_code, base_url='https://www.kucoin.com/pt/price/', url=url,
                                   title=title,
                                   description=description, keywords=keywords)
 
 
 # read_tdks_from_database()
-# read_excel_into_database(language_code='nl_NL')
+# read_excel_into_database(language_code='pt_PT')
